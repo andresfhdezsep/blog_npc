@@ -1,0 +1,6 @@
+<% if session[:sale_box_id].nil? and current_user.type_user == 5 %>
+    <% if controller_name != "home" %>
+        <%  flash[:warn] = "Selecciona una caja"    
+            controller.redirect_to "/" %>
+    <% end %>
+<% end %>

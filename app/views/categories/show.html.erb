@@ -1,0 +1,68 @@
+<%= render partial: "layouts/head" %>
+<main role="main" class="container">
+  <div class="jumbotron">
+    <div class="container">
+      <h1 class="display-3"><%= @category.name %></h1>
+      <p><%= @category.description %></p>
+      <p>
+        <%= link_to 'Edit', edit_category_path(@category), remote: true , class: "btn btn-primary btn-lg" %> 
+    <%= link_to 'Back', categories_path, class: "btn btn-primary btn-lg" %>
+      </p>
+    </div>
+  </div>
+
+      <div class="row">
+        <% @category.articles.each do |article| %>
+          <div class="col-lg-4">
+            <div class="ibox">
+              <div class="ibox-content">
+                <a href="<%= article_url(article) %> " class="btn-link">
+                  <h2>
+                    <%= article.title %>
+                  </h2>
+                </a>
+                <div class="small m-b-xs">
+                  <strong>
+                    <%= article.user.email %>
+                  </strong>
+                  <span class="text-muted">
+                    <i class="fa fa-clock-o"></i>
+                    <%= article.created_at %>
+                  </span>
+                </div>
+                <p>
+                  <td>
+                    <%= article.text[0..47] %>
+                      <% concat "..." if article.text.length > 47 %>
+                  </td>
+                </p>
+                <div class="row">
+                  <div class="col-md-6">
+                    <h5>Categoria:</h5>
+                    <button class="btn btn-primary btn-xs" type="button">
+                      <%= article.category.name %>
+                    </button>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="small text-right">
+                      <h5>Stats:</h5>
+                      <div>
+                        <i class="fa fa-comments-o"> </i>
+                        0 comentarios </div>
+                      <div>
+                        <i class="fa fa-eye"> </i>
+                        0 vistas
+                      </div>
+                      <i class="fa fa-like"> </i>
+                      0 likes
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% end %>
+      </div>
+</main>
+
+<div id="modal"></div>

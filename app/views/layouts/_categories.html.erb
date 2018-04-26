@@ -1,0 +1,8 @@
+<div class="nav-scroller py-1 mb-2 navbar-light bg-light">
+    <nav class="nav d-flex justify-content-between">
+        <%  @menu = Category.all %>
+        <% @menu.each do |category| %>
+            <%= link_to category.name, category_url(category), class: "p-2 text-muted" %>
+                <% end %>
+    </nav>
+</div>

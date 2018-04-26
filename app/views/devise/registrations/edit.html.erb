@@ -1,0 +1,145 @@
+<%= render partial: "layouts/head" %>
+
+  <main role="main" class="container">
+    <div class="wrapper wrapper-content">
+      <div class="row animated fadeInRight">
+        <div class="col-md-4">
+          <div class="ibox float-e-margins">
+            <div>
+              <div class="ibox-content no-padding border-left-right">
+                <%= image_tag @user.avatar.url(:thumb), class: "border border-dark img-responsive rounded-circle" %>
+              </div>
+              <div class="ibox-content profile-content">
+                <h4>
+                  <strong><%= @user.name %></strong>
+                </h4>
+                <h5>
+                  Biografia
+                </h5>
+                <p>
+                    <%= @user.bio %>
+                </p>
+                <div class="row m-t-lg">
+                  <div class="col-md-4">
+                    <h5>
+                      <strong>169</strong> Posts</h5>
+                  </div>
+                  <div class="col-md-4">
+                    <h5>
+                      <strong>28</strong> Following</h5>
+                  </div>
+                  <div class="col-md-4">
+                    <h5>
+                      <strong>240</strong> Followers</h5>
+                  </div>
+                </div>
+                <div class="user-button">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <button type="button" class="btn btn-primary btn-sm btn-block">
+                        <i class="fa fa-envelope"></i> Send Message</button>
+                    </div>
+                    <div class="col-md-6">
+                      <button type="button" class="btn btn-default btn-sm btn-block">
+                        <i class="fa fa-coffee"></i> Buy a coffee</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="ibox float-e-margins">
+            <div class="ibox-title">
+              <h5>Edit <%= resource_name.to_s.humanize %></h5>
+            </div>
+            <div class="ibox-content">
+
+              <div>
+                <div class="feed-activity-list">
+
+                    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true }) do |f| %>
+                    <%= devise_error_messages! %>
+
+                    <div class="field">
+                        <%= f.label :username %>
+                          <br />
+                          <%= f.text_field :username, autofocus: true, autocomplete: "username", class: "form-control" %>
+                      </div>
+
+                      <div class="field">
+                          <%= f.label :name %>
+                            <br />
+                            <%= f.text_field :name, autocomplete: "name", class: "form-control" %>
+                        </div>
+
+                        <div class="field">
+                            <%= f.label :bio %>
+                              <br />
+                              <%= f.text_area :bio, autocomplete: "bio", class: "form-control" %>
+                          </div>
+
+                      <div class="field">
+                        <%= f.label :email %>
+                          <br />
+                          <%= f.email_field :email, autocomplete: "email", class: "form-control" %>
+                      </div>
+
+                      <div class="field">
+                          <%= f.label :avatar %>
+                          <br>
+                          <%= f.file_field :avatar, class: "form-control" %>
+                      </div>
+                      
+                      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                        <div>Currently waiting confirmation for:
+                          <%= resource.unconfirmed_email %>
+                        </div>
+                        <% end %>
+              
+                          <div class="field">
+                            <%= f.label :password %>
+                              <i>(leave blank if you don't want to change it)</i>
+                              <br />
+                              <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+                                <% if @minimum_password_length %>
+                                  <br />
+                                  <em>
+                                    <%= @minimum_password_length %> characters minimum</em>
+                                  <% end %>
+                          </div>
+              
+                          <div class="field">
+                            <%= f.label :password_confirmation %>
+                              <br />
+                              <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+                          </div>
+              
+                          <div class="field">
+                            <%= f.label :current_password %>
+                              <i>(we need your current password to confirm your changes)</i>
+                              <br />
+                              <%= f.password_field :current_password, autocomplete: "off", class: "form-control" %>
+                          </div>
+              
+                          <div class="actions">
+                            <%= f.submit "Update", class: "btn btn-primary btn-block m" %>
+                          </div>
+                          <% end %>
+                          <hr>
+                            <h3>Cancel my account</h3>
+              
+                            <p>Unhappy?
+                              <%= button_to "Cancel my account", registration_path(resource_name), class: "btn btn-primary btn-block m", data: { confirm: "Are you sure?" }, method: :delete %>
+                            </p>
+
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </main>

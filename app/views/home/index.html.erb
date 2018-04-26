@@ -1,0 +1,37 @@
+<div class="container">
+    <%= render partial: "layouts/nav" %>
+        <%= render partial: "layouts/categories" %>
+            <%= render partial: "slide" %>
+                <br>
+</div>
+
+<main role="main" class="container bg-color">
+    <div class="row">
+        <div class="col-md-8 blog-main">
+            <h3 class="pb-3 mb-4 font-italic border-bottom">
+                Ultimas noticias
+            </h3>
+
+            <div id="articles">
+                <%= render "row", articles: @articles, class: "articles" %>
+            </div>
+
+            <%= will_paginate @articles %>
+                <nav class="blog-pagination">
+                    <a class="btn btn-outline-primary" href="#">
+                        <</a>
+                            <a class="btn btn-outline-secondary disabled" href="#">></a>
+                </nav>
+
+        </div>
+        <!-- /.blog-main -->
+
+
+        <%= render partial: "aside" %>
+            <!-- /.blog-sidebar -->
+
+    </div>
+    <!-- /.row -->
+
+</main>
+<!-- /.container -->

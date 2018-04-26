@@ -1,0 +1,10 @@
+<table class="table">
+    <thead>
+        <th>Nombre</th>
+    </thead>
+</table>
+<tbody>
+    <% @users.each do |user| %>
+        <th><%= user.name %></th>
+    <% end %>
+</tbody>

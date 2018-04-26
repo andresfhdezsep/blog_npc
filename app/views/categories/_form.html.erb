@@ -1,0 +1,52 @@
+<div id="category_modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 id="modal_title" class="modal-title">
+          <% if @categories.nil? %>
+            Nuevo articulo
+            <% else %>
+              <%= @categories.name %>
+                <% end %>
+        </h4>
+      </div>
+      <div id="modal_body" class="modal-body">
+        <%= form_with(model: @category, remote: true) do |form| %>
+          <% if @category.errors.any? %>
+            <div id="error_explanation">
+              <h2>
+                <%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:</h2>
+
+              <ul>
+                <% @category.errors.full_messages.each do |message| %>
+                  <li>
+                    <%= message %>
+                  </li>
+                  <% end %>
+              </ul>
+            </div>
+            <% end %>
+
+              <div class="field">
+                <%= form.label :name %>
+                  <%= form.text_field :name, id: :category_name %>
+              </div>
+
+              <div class="field">
+                <%= form.label :description %>
+                  <%= form.text_field :description, id: :category_description %>
+              </div>
+
+              <%= form.hidden_field :user_id, value: current_user.id %>
+
+                <div class="actions">
+                  <%= form.submit %>
+                </div>
+                <% end %>
+      </div>
+    </div>
+  </div>
+</div>
